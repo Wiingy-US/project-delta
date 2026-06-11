@@ -1,0 +1,31 @@
+<!-- @dsCard group="Brand" viewport="700x120" name="Logo" subtitle="Wiingy wordmark — blue and white variants" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; font-family: var(--font-primary); }
+  .row { display: flex; gap: 40px; padding: 20px 24px; align-items: center; }
+  .variant { display: flex; align-items: center; gap: 16px; padding: 16px 32px; border-radius: var(--radius-lg); }
+  .variant img { height: 28px; }
+  .label { font-size: 11px; font-weight: 600; color: var(--grey-3); font-family: var(--font-mono); }
+</style>
+</head>
+<body>
+<div class="row">
+  <div class="variant" style="background: #fff; border: 1px solid var(--grey-6);">
+    <img src="../assets/logo-blue.svg" alt="Wiingy logo blue">
+    <span class="label">On white</span>
+  </div>
+  <div class="variant" style="background: var(--blue-600);">
+    <img src="../assets/logo-white.svg" alt="Wiingy logo white">
+    <span class="label" style="color: rgba(255,255,255,0.7);">On blue</span>
+  </div>
+  <div class="variant" style="background: var(--grey-1);">
+    <img src="../assets/logo-white.svg" alt="Wiingy logo white">
+    <span class="label" style="color: rgba(255,255,255,0.7);">On dark</span>
+  </div>
+</div>
+</body>
+</html>

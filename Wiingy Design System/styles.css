@@ -1,0 +1,4 @@
+/* Wiingy Design System — Root stylesheet (imports only) */
+@import url('./tokens/colors.css');
+@import url('./tokens/typography.css');
+@import url('./tokens/spacing.css');

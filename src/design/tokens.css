@@ -1,0 +1,65 @@
+/**
+ * Delta Math — Design System
+ * Sourced from Claude Design (Math Tutoring Trial)
+ * https://claude.ai/design/p/d9960c04-3716-4087-a57a-db025a817087
+ */
+
+@theme {
+  /* Typography */
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-body: "Instrument Sans", system-ui, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Consolas, monospace;
+
+  /* Core palette */
+  --color-background: #f2ede4;
+  --color-surface: #ffffff;
+  --color-surface-muted: #ede8df;
+  --color-surface-chat: #faf9f7;
+
+  --color-primary: #004d40;
+  --color-primary-light: #d1ebe3;
+  --color-primary-subtle: #e8f4f0;
+
+  --color-accent: #d4726a;
+  --color-accent-dark: #b85a52;
+  --color-accent-subtle: #f5e8e6;
+
+  --color-text: #1a2e2a;
+  --color-text-muted: #6b7c78;
+  --color-text-on-primary: #f2ede4;
+  --color-text-on-accent: #ffffff;
+
+  --color-border: #004d4014;
+  --color-border-strong: #004d4026;
+
+  --color-bubble-tutor: #d1ebe3;
+  --color-bubble-student: #f0efed;
+
+  /* Semantic aliases (used across components) */
+  --color-cream: var(--color-background);
+  --color-cream-dark: var(--color-surface-muted);
+  --color-ink: var(--color-text);
+  --color-ink-muted: var(--color-text-muted);
+  --color-teal: var(--color-primary);
+  --color-teal-light: var(--color-primary-light);
+  --color-coral: var(--color-accent);
+  --color-coral-dark: var(--color-accent-dark);
+
+  /* Radius */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.25rem;
+  --radius-2xl: 1.5rem;
+  --radius-3xl: 1.75rem;
+
+  /* Shadows */
+  --shadow-card: 0 24px 64px -12px rgba(0, 77, 64, 0.12);
+  --shadow-float: 0 8px 24px rgba(0, 77, 64, 0.1);
+  --shadow-subtle: 0 1px 3px rgba(0, 77, 64, 0.06);
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+}

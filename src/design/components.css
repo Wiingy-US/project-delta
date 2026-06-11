@@ -1,0 +1,76 @@
+@layer components {
+  /* Section patterns */
+  .ds-section {
+    @apply px-5 py-20 lg:px-8 lg:py-28;
+  }
+
+  .ds-eyebrow {
+    @apply text-sm font-semibold uppercase tracking-wider text-accent;
+  }
+
+  .ds-heading {
+    @apply font-display text-3xl font-semibold tracking-tight text-text lg:text-4xl;
+  }
+
+  .ds-subheading {
+    @apply mt-4 text-lg leading-relaxed text-text-muted;
+  }
+
+  /* Cards */
+  .ds-card {
+    @apply rounded-2xl border border-border bg-surface-muted shadow-[var(--shadow-card)];
+  }
+
+  .ds-card-inner {
+    @apply rounded-xl bg-surface-chat p-4 lg:p-5;
+  }
+
+  /* Buttons */
+  .ds-btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-primary px-7 py-3.5 text-sm font-semibold text-text-on-primary transition-all duration-150 hover:brightness-110 active:scale-[0.98];
+  }
+
+  .ds-btn-accent {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-text-on-accent transition-all duration-150 hover:bg-accent-dark;
+  }
+
+  .ds-btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 text-sm font-semibold text-text-muted underline-offset-4 transition-colors hover:text-text hover:underline;
+  }
+
+  /* Badges */
+  .ds-badge {
+    @apply inline-flex shrink-0 items-center rounded-full bg-primary-subtle px-3 py-1 text-xs font-semibold text-primary;
+  }
+
+  .ds-pill {
+    @apply rounded-full border border-border bg-background px-3 py-1 text-xs font-medium text-text-muted;
+  }
+
+  /* Chat session UI */
+  .ds-avatar-tutor {
+    @apply flex size-8 shrink-0 items-center justify-center rounded-full bg-primary text-xs font-bold text-text-on-primary;
+  }
+
+  .ds-avatar-student {
+    @apply flex size-8 shrink-0 items-center justify-center rounded-full bg-accent text-xs font-bold text-text-on-accent;
+  }
+
+  .ds-bubble-tutor {
+    @apply max-w-[85%] rounded-2xl rounded-tl-sm bg-bubble-tutor px-4 py-3 text-sm leading-relaxed text-text;
+  }
+
+  .ds-bubble-student {
+    @apply max-w-[85%] rounded-2xl rounded-tr-sm bg-bubble-student px-4 py-3 text-sm leading-relaxed text-text-muted;
+  }
+
+  /* Form inputs */
+  .ds-input {
+    @apply mt-1.5 w-full rounded-xl border border-border-strong bg-surface px-4 py-3 text-sm text-text outline-none transition-colors placeholder:text-text-muted/50 focus:border-primary focus:ring-2 focus:ring-primary/15;
+  }
+
+  /* Dark feature band */
+  .ds-band-primary {
+    @apply bg-primary text-text-on-primary;
+  }
+}

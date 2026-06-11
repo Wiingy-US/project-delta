@@ -1,0 +1,31 @@
+<!-- @dsCard group="Colors" viewport="700x180" name="Brand Blue" subtitle="Primary brand scale — Blue/600 is the hero" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; font-family: var(--font-primary); background: #fff; }
+  .row { display: flex; gap: 6px; padding: 16px; }
+  .swatch { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .swatch .color { width: 100%; height: 64px; border-radius: var(--radius-md); }
+  .swatch .label { font-size: 11px; font-weight: 500; color: var(--grey-3); font-family: var(--font-mono); }
+  .swatch .hex { font-size: 10px; color: var(--grey-4); font-family: var(--font-mono); }
+  .brand { outline: 2px solid var(--blue-600); outline-offset: 2px; }
+</style>
+</head>
+<body>
+<div class="row">
+  <div class="swatch"><div class="color" style="background: var(--blue-100);"></div><span class="label">100</span><span class="hex">#E9EEF6</span></div>
+  <div class="swatch"><div class="color" style="background: var(--blue-200);"></div><span class="label">200</span><span class="hex">#D4DDED</span></div>
+  <div class="swatch"><div class="color" style="background: var(--blue-300);"></div><span class="label">300</span><span class="hex">#A8BBDA</span></div>
+  <div class="swatch"><div class="color" style="background: var(--blue-400);"></div><span class="label">400</span><span class="hex">#7D99C8</span></div>
+  <div class="swatch"><div class="color" style="background: var(--blue-500);"></div><span class="label">500</span><span class="hex">#5177B5</span></div>
+  <div class="swatch"><div class="color brand" style="background: var(--blue-600);"></div><span class="label">600 ★</span><span class="hex">#2655A3</span></div>
+  <div class="swatch"><div class="color" style="background: var(--blue-700);"></div><span class="label">700</span><span class="hex">#1E4482</span></div>
+  <div class="swatch"><div class="color" style="background: var(--blue-800);"></div><span class="label">800</span><span class="hex">#173362</span></div>
+  <div class="swatch"><div class="color" style="background: var(--blue-900);"></div><span class="label">900</span><span class="hex">#0F2241</span></div>
+  <div class="swatch"><div class="color" style="background: var(--blue-1000);"></div><span class="label">1000</span><span class="hex">#081121</span></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!-- @dsCard group="Colors" viewport="700x120" name="Semantic Colors" subtitle="Brand, success, warning, accent" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; font-family: var(--font-primary); background: #fff; }
+  .row { display: flex; gap: 12px; padding: 16px; }
+  .swatch { display: flex; align-items: center; gap: 10px; flex: 1; }
+  .swatch .color { width: 48px; height: 48px; border-radius: var(--radius-md); flex-shrink: 0; }
+  .swatch .info { display: flex; flex-direction: column; gap: 2px; }
+  .swatch .label { font-size: 12px; font-weight: 600; color: var(--grey-1); }
+  .swatch .hex { font-size: 11px; color: var(--grey-3); font-family: var(--font-mono); }
+</style>
+</head>
+<body>
+<div class="row">
+  <div class="swatch"><div class="color" style="background: var(--color-brand);"></div><div class="info"><span class="label">Brand</span><span class="hex">#2655A3</span></div></div>
+  <div class="swatch"><div class="color" style="background: var(--color-brand-hover);"></div><div class="info"><span class="label">Brand Hover</span><span class="hex">#1E4482</span></div></div>
+  <div class="swatch"><div class="color" style="background: var(--color-success);"></div><div class="info"><span class="label">Success</span><span class="hex">#219653</span></div></div>
+  <div class="swatch"><div class="color" style="background: var(--color-warning);"></div><div class="info"><span class="label">Warning</span><span class="hex">#FBBF24</span></div></div>
+  <div class="swatch"><div class="color" style="background: var(--color-accent);"></div><div class="info"><span class="label">Accent</span><span class="hex">#A855F7</span></div></div>
+</div>
+</body>
+</html>

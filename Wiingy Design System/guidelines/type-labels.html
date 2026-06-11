@@ -1,0 +1,41 @@
+<!-- @dsCard group="Type" viewport="700x340" name="Labels" subtitle="Figtree Medium/SemiBold/Bold — UI control text" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; font-family: var(--font-primary); background: #fff; }
+  .specimens { padding: 20px 24px; display: flex; flex-direction: column; gap: 16px; }
+  .row { display: flex; align-items: baseline; gap: 16px; }
+  .meta { width: 160px; flex-shrink: 0; display: flex; flex-direction: column; gap: 2px; }
+  .meta .name { font-size: 11px; font-weight: 600; color: var(--grey-3); font-family: var(--font-mono); }
+  .meta .spec { font-size: 10px; color: var(--grey-4); font-family: var(--font-mono); }
+  .sample { color: var(--text-primary); }
+  .divider { height: 1px; background: var(--grey-6); }
+</style>
+</head>
+<body>
+<div class="specimens">
+  <div class="row">
+    <div class="meta"><span class="name">Label/Large</span><span class="spec">Figtree SemiBold · 18/20</span></div>
+    <span class="sample" style="font-size: var(--label-lg-size); line-height: var(--label-lg-line); font-weight: var(--label-lg-weight);">The quick brown fox jumps over the lazy dog.</span>
+  </div>
+  <div class="divider"></div>
+  <div class="row">
+    <div class="meta"><span class="name">Label/Medium</span><span class="spec">Figtree Medium · 16/20</span></div>
+    <span class="sample" style="font-size: var(--label-md-size); line-height: var(--label-md-line); font-weight: var(--label-md-weight);">The quick brown fox jumps over the lazy dog.</span>
+  </div>
+  <div class="divider"></div>
+  <div class="row">
+    <div class="meta"><span class="name">Label/Small · Tag</span><span class="spec">Figtree Medium · 14/16</span></div>
+    <span class="sample" style="font-size: var(--label-sm-size); line-height: var(--label-sm-line); font-weight: var(--label-sm-weight);">The quick brown fox jumps over the lazy dog.</span>
+  </div>
+  <div class="divider"></div>
+  <div class="row">
+    <div class="meta"><span class="name">Label/XSmall</span><span class="spec">Figtree Bold · 10/12</span></div>
+    <span class="sample" style="font-size: var(--label-xs-size); line-height: var(--label-xs-line); font-weight: var(--label-xs-weight);">THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG.</span>
+  </div>
+</div>
+</body>
+</html>

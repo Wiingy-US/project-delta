@@ -1,0 +1,36 @@
+<!-- @dsCard group="Type" viewport="700x320" name="Headings" subtitle="Figtree Bold/SemiBold — Heading Medium and Small" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; font-family: var(--font-primary); background: #fff; }
+  .specimens { padding: 20px 24px; display: flex; flex-direction: column; gap: 20px; }
+  .row { display: flex; align-items: baseline; gap: 16px; }
+  .meta { width: 160px; flex-shrink: 0; display: flex; flex-direction: column; gap: 2px; }
+  .meta .name { font-size: 11px; font-weight: 600; color: var(--grey-3); font-family: var(--font-mono); }
+  .meta .spec { font-size: 10px; color: var(--grey-4); font-family: var(--font-mono); }
+  .sample { color: var(--text-primary); }
+  .divider { height: 1px; background: var(--grey-6); }
+</style>
+</head>
+<body>
+<div class="specimens">
+  <div class="row">
+    <div class="meta"><span class="name">Heading/Medium</span><span class="spec">Figtree Bold · 32/36</span></div>
+    <span class="sample" style="font-size: var(--heading-md-size); line-height: var(--heading-md-line); font-weight: var(--heading-md-weight);">The quick brown fox jumps over the lazy dog.</span>
+  </div>
+  <div class="divider"></div>
+  <div class="row">
+    <div class="meta"><span class="name">Heading/Small</span><span class="spec">Figtree SemiBold · 26/32</span></div>
+    <span class="sample" style="font-size: var(--heading-sm-size); line-height: var(--heading-sm-line); font-weight: var(--heading-sm-weight);">The quick brown fox jumps over the lazy dog.</span>
+  </div>
+  <div class="divider"></div>
+  <div class="row">
+    <div class="meta"><span class="name">Label/XLarge</span><span class="spec">Figtree Medium · 22/24</span></div>
+    <span class="sample" style="font-size: var(--label-xl-size); line-height: var(--label-xl-line); font-weight: var(--label-xl-weight);">The quick brown fox jumps over the lazy dog.</span>
+  </div>
+</div>
+</body>
+</html>

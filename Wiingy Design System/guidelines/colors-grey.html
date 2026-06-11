@@ -1,0 +1,30 @@
+<!-- @dsCard group="Colors" viewport="700x180" name="Grey Scale" subtitle="10-step neutral palette from #222 to #FAFAFA" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; font-family: var(--font-primary); background: #fff; }
+  .row { display: flex; gap: 6px; padding: 16px; }
+  .swatch { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .swatch .color { width: 100%; height: 64px; border-radius: var(--radius-md); border: 1px solid var(--grey-6); }
+  .swatch .label { font-size: 11px; font-weight: 500; color: var(--grey-3); font-family: var(--font-mono); }
+  .swatch .hex { font-size: 10px; color: var(--grey-4); font-family: var(--font-mono); }
+</style>
+</head>
+<body>
+<div class="row">
+  <div class="swatch"><div class="color" style="background: var(--grey-1);"></div><span class="label">Grey/1</span><span class="hex">#222222</span></div>
+  <div class="swatch"><div class="color" style="background: var(--grey-2);"></div><span class="label">Grey/2</span><span class="hex">#464646</span></div>
+  <div class="swatch"><div class="color" style="background: var(--grey-3);"></div><span class="label">Grey/3</span><span class="hex">#6A6A6A</span></div>
+  <div class="swatch"><div class="color" style="background: var(--grey-3-2);"></div><span class="label">Grey/3.2</span><span class="hex">#717171</span></div>
+  <div class="swatch"><div class="color" style="background: var(--grey-3-5);"></div><span class="label">Grey/3.5</span><span class="hex">#8C8C8C</span></div>
+  <div class="swatch"><div class="color" style="background: var(--grey-4);"></div><span class="label">Grey/4</span><span class="hex">#B0B0B0</span></div>
+  <div class="swatch"><div class="color" style="background: var(--grey-5);"></div><span class="label">Grey/5</span><span class="hex">#DDDDDD</span></div>
+  <div class="swatch"><div class="color" style="background: var(--grey-6);"></div><span class="label">Grey/6</span><span class="hex">#EBEBEB</span></div>
+  <div class="swatch"><div class="color" style="background: var(--grey-7);"></div><span class="label">Grey/7</span><span class="hex">#F7F7F7</span></div>
+  <div class="swatch"><div class="color" style="background: var(--grey-8);"></div><span class="label">Grey/8</span><span class="hex">#FAFAFA</span></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,73 @@
+/* ============================================================
+   Wiingy Design System — Typography Tokens
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;700&display=swap');
+
+:root {
+  /* ── Font Families ── */
+  --font-primary: 'Figtree', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  /* ── Font Weights ── */
+  --weight-regular:  400;
+  --weight-medium:   500;
+  --weight-semibold: 600;
+  --weight-bold:     700;
+  --weight-black:    900;
+
+  /* ── Heading / Medium ── */
+  --heading-md-size: 32px;
+  --heading-md-line: 36px;
+  --heading-md-weight: var(--weight-bold);
+
+  /* ── Heading / Small ── */
+  --heading-sm-size: 26px;
+  --heading-sm-line: 32px;
+  --heading-sm-weight: var(--weight-semibold);
+
+  /* ── Label / XLarge ── */
+  --label-xl-size: 22px;
+  --label-xl-line: 24px;
+  --label-xl-weight: var(--weight-medium);
+
+  /* ── Label / Large ── */
+  --label-lg-size: 18px;
+  --label-lg-line: 20px;
+  --label-lg-weight: var(--weight-semibold);
+
+  /* ── Label / Medium ── */
+  --label-md-size: 16px;
+  --label-md-line: 20px;
+  --label-md-weight: var(--weight-medium);
+
+  /* ── Label / Small · Tag ── */
+  --label-sm-size: 14px;
+  --label-sm-line: 16px;
+  --label-sm-weight: var(--weight-medium);
+
+  /* ── Label / XSmall ── */
+  --label-xs-size: 10px;
+  --label-xs-line: 12px;
+  --label-xs-weight: var(--weight-bold);
+
+  /* ── Body / XLarge ── */
+  --body-xl-size: 18px;
+  --body-xl-line: 28px;
+  --body-xl-weight: var(--weight-regular);
+
+  /* ── Body / Large ── */
+  --body-lg-size: 16px;
+  --body-lg-line: 24px;
+  --body-lg-weight: var(--weight-regular);
+
+  /* ── Body / Large · Compact ── */
+  --body-lg-compact-size: 16px;
+  --body-lg-compact-line: 20px;
+  --body-lg-compact-weight: var(--weight-regular);
+
+  /* ── Body / Medium ── */
+  --body-md-size: 14px;
+  --body-md-line: 20px;
+  --body-md-weight: var(--weight-medium);
+}

@@ -1,0 +1,340 @@
+<!-- @dsCard group="Wiingy Website" viewport="1280x800" name="Landing Page" subtitle="Subject landing page — hero, stats, tutors, trust, FAQ" -->
+<!-- @startingPoint section="UI Kits" subtitle="Wiingy subject landing page" viewport="1280x800" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wiingy — Math Tutors</title>
+<link rel="stylesheet" href="../../styles.css">
+<script src="../../_ds_bundle.js" onerror="console.warn('DS bundle not yet compiled — using inline fallbacks')"></script>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: var(--font-primary); color: var(--text-primary); background: #fff; }
+  a { color: inherit; text-decoration: none; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+/* ─── DS components with inline fallbacks ─── */
+const _DS = window.WiingyDesignSystem_d9960c || {};
+
+function Button({ children, variant = 'primary', size = 'lg', disabled, fullWidth, onClick, style, ...rest }) {
+  if (_DS.Button) return React.createElement(_DS.Button, { variant, size, disabled, fullWidth, onClick, style, ...rest }, children);
+  const isLg = size === 'lg';
+  const variants = {
+    primary:    { background: '#2655A3', color: '#fff', border: 'none' },
+    secondary:  { background: '#222', color: '#fff', border: 'none' },
+    tertiary:   { background: 'transparent', color: '#222', border: '1px solid #222' },
+    quaternary: { background: '#fff', color: '#222', border: '1px solid #222' },
+  };
+  const v = variants[variant] || variants.primary;
+  return (
+    <button onClick={onClick} disabled={disabled} style={{
+      display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+      height: isLg ? 48 : 34, padding: `${isLg ? 14 : 7}px 24px`, borderRadius: 8,
+      border: v.border, background: v.background, color: v.color,
+      fontFamily: 'var(--font-primary)', fontWeight: 500, fontSize: 16, lineHeight: '20px',
+      cursor: disabled ? 'not-allowed' : 'pointer', opacity: disabled ? 0.4 : 1,
+      width: fullWidth ? '100%' : 'auto', boxSizing: 'border-box', whiteSpace: 'nowrap',
+      ...style
+    }} {...rest}>{children}</button>
+  );
+}
+
+function Tag({ children = 'Student favorite', size = 'md', variant = 'default', style, ...rest }) {
+  if (_DS.Tag) return React.createElement(_DS.Tag, { size, variant, style, ...rest }, children);
+  const isSm = size === 'sm';
+  return (
+    <span style={{
+      display: 'inline-flex', alignItems: 'center', padding: isSm ? '2px 8px' : '4px 10px',
+      borderRadius: 9999, background: 'linear-gradient(12.78deg, #F1F1F1 3.63%, #FFF 13.83%, #FFF 68.55%, #EFEFEF 90.81%)',
+      boxShadow: '0 0 0 1px #fff, 0px 4px 10px 0px rgba(0,0,0,0.16)',
+      fontFamily: 'var(--font-primary)', fontWeight: 700, fontSize: isSm ? 12 : 14,
+      lineHeight: isSm ? '14px' : '16px', color: '#222', whiteSpace: 'nowrap', ...style
+    }} {...rest}>{children}</span>
+  );
+}
+
+function Badge({ children, variant = 'default', style, ...rest }) {
+  if (_DS.Badge) return React.createElement(_DS.Badge, { variant, style, ...rest }, children);
+  const colors = { default: '#DDD', brand: '#2655A3', success: '#219653', warning: '#FBBF24', accent: '#A855F7' };
+  const isCount = children != null;
+  return (
+    <span style={{
+      display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+      minWidth: isCount ? 20 : 8, height: isCount ? 20 : 8, padding: isCount ? '0 6px' : 0,
+      borderRadius: 9999, background: colors[variant] || colors.default,
+      color: variant === 'warning' ? '#92400E' : '#fff',
+      fontFamily: 'var(--font-primary)', fontWeight: 700, fontSize: 11, ...style
+    }} {...rest}>{children}</span>
+  );
+}
+
+/* ─── Nav ─── */
+function TopNav() {
+  return (
+    <nav style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 80px', height: 80, background: '#fff', borderBottom: '1px solid var(--grey-6)', position: 'sticky', top: 0, zIndex: 100 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+        <img src="../../assets/logo-blue.svg" alt="Wiingy" style={{ height: 20 }} />
+      </div>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 4, height: 48, borderRadius: 'var(--radius-md)', border: '1px solid var(--grey-5)', padding: '0 16px', flex: '0 1 340px' }}>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--grey-4)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <span style={{ fontSize: 16, color: 'var(--grey-4)', marginLeft: 8 }}>Search for a subject or tutor</span>
+      </div>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+        <NavLink>Contact</NavLink>
+        <NavLink>App</NavLink>
+        <NavLink>Book a free trial</NavLink>
+        <Button variant="primary" size="sm" style={{ marginLeft: 8, borderRadius: 'var(--radius-md)', height: 42 }}>Lesson in 3 days</Button>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginLeft: 8, padding: '6px 12px', borderRadius: 'var(--radius-pill)', border: '1px solid var(--grey-5)', cursor: 'pointer' }}>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--grey-1)" strokeWidth="2"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          <div style={{ width: 28, height: 28, borderRadius: '50%', background: 'var(--grey-4)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path></svg>
+          </div>
+        </div>
+      </div>
+    </nav>
+  );
+}
+
+function NavLink({ children }) {
+  const [hovered, setHovered] = React.useState(false);
+  return (
+    <span
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{ padding: '10px 16px', fontSize: 16, fontWeight: 500, color: 'var(--grey-1)', cursor: 'pointer', borderRadius: 'var(--radius-md)', background: hovered ? 'var(--grey-7)' : 'transparent', transition: 'background 150ms' }}
+    >{children}</span>
+  );
+}
+
+/* ─── Hero ─── */
+function Hero() {
+  return (
+    <section style={{ display: 'flex', alignItems: 'center', padding: '0 80px', gap: -100, position: 'relative', minHeight: 500 }}>
+      <div style={{ position: 'relative', zIndex: 2, width: 420, borderRadius: 'var(--radius-lg)', background: '#fff', boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.04), 0px 6px 20px rgba(0,0,0,0.2)', padding: 32, display: 'flex', flexDirection: 'column', gap: 16, marginRight: -100 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+          <h1 style={{ fontSize: 'var(--heading-md-size)', lineHeight: 'var(--heading-md-line)', fontWeight: 'var(--heading-md-weight)' }}>Math Tutors</h1>
+          <p style={{ fontSize: 16, lineHeight: '20px', color: 'var(--grey-3)' }}>Find and book unique tutors on Wiingy</p>
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+          <div style={{ display: 'flex', alignItems: 'center', height: 56, borderRadius: 'var(--radius-md)', border: '1px solid var(--grey-5)', padding: '0 16px', gap: 8 }}>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--grey-4)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <span style={{ fontSize: 16, color: 'var(--grey-4)' }}>Algebra for middle school</span>
+          </div>
+          <Button variant="primary" fullWidth>Search Tutors</Button>
+        </div>
+      </div>
+      <div style={{ flex: 1, height: 500, borderRadius: 'var(--radius-lg)', background: 'linear-gradient(135deg, var(--blue-100) 0%, var(--blue-200) 50%, var(--purple-100) 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginLeft: 0 }}>
+        <div style={{ textAlign: 'center', color: 'var(--blue-600)' }}>
+          <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M12 14l9-5-9-5-9 5 9 5z"></path><path d="M12 14l6.16-3.422A12 12 0 0121 17.5c0 1.38-4.03 2.5-9 2.5S3 18.88 3 17.5a12 12 0 012.84-6.922L12 14z"></path></svg>
+          <p style={{ fontWeight: 600, marginTop: 12, fontSize: 18 }}>Hero Image</p>
+          <p style={{ fontSize: 14, color: 'var(--blue-400)', marginTop: 4 }}>Tutor photo placeholder</p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─── Stats ─── */
+function StatsSection() {
+  const stats = [
+    { label: 'Total Lessons', value: '500,000+', desc: 'Lessons delivered worldwide' },
+    { label: 'Active Tutors', value: '1,200+', desc: 'Certified math experts' },
+    { label: 'Average Rating', value: '4.95', desc: 'Based on 10,000+ reviews' },
+    { label: 'Student Satisfaction', value: '98%', desc: 'Students recommend Wiingy' },
+    { label: 'Countries Served', value: '100+', desc: 'Global tutoring coverage' },
+    { label: 'Subjects Available', value: '50+', desc: 'Across STEM and beyond' },
+  ];
+  return (
+    <section style={{ padding: '40px 80px 80px', background: '#fff' }}>
+      <h2 style={{ fontSize: 'var(--heading-sm-size)', lineHeight: 'var(--heading-sm-line)', fontWeight: 'var(--heading-sm-weight)', marginBottom: 24 }}>Quick Stats about Math Tutoring</h2>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }}>
+        {stats.map((s, i) => (
+          <div key={i} style={{ padding: 24, borderRadius: 'var(--radius-lg)', border: '1px solid var(--grey-5)', display: 'flex', flexDirection: 'column', gap: 8 }}>
+            <span style={{ fontSize: 18, fontWeight: 600, color: 'var(--grey-1)' }}>{s.label}</span>
+            <span style={{ fontSize: 32, fontWeight: 700, color: 'var(--blue-600)', lineHeight: '36px' }}>{s.value}</span>
+            <span style={{ fontSize: 14, color: 'var(--grey-3)' }}>{s.desc}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+/* ─── Tutor Cards ─── */
+function TutorCardsSection() {
+  const tutors = [
+    { name: 'Sarah M.', specialty: 'Calculus Expert', rating: '4.98', reviews: 185, bio: 'Masters in Mathematics with 6 years of tutoring experience. Specializes in AP Calculus.', tag: 'Student favorite' },
+    { name: 'James K.', specialty: 'Algebra Specialist', rating: '4.95', reviews: 142, bio: 'PhD candidate in Applied Mathematics. Makes complex concepts simple and fun.', tag: 'Super tutor' },
+    { name: 'Priya R.', specialty: 'Statistics & Probability', rating: '4.92', reviews: 98, bio: 'Data scientist turned tutor. Expert in statistics, probability, and data analysis.', tag: null },
+    { name: 'David L.', specialty: 'Geometry & Trig', rating: '4.97', reviews: 210, bio: 'Former high school teacher with 12 years of experience. Patient and thorough approach.', tag: 'Student favorite' },
+  ];
+  return (
+    <section style={{ padding: '40px 80px 80px', background: 'var(--grey-7)' }}>
+      <h2 style={{ fontSize: 'var(--heading-sm-size)', lineHeight: 'var(--heading-sm-line)', fontWeight: 'var(--heading-sm-weight)', marginBottom: 24 }}>Top Math Tutors</h2>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16 }}>
+        {tutors.map((t, i) => (
+          <TutorCard key={i} {...t} />
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function TutorCard({ name, specialty, rating, reviews, bio, tag }) {
+  const [hovered, setHovered] = React.useState(false);
+  return (
+    <div
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{ borderRadius: 'var(--radius-lg)', overflow: 'hidden', cursor: 'pointer', transition: 'box-shadow 200ms', boxShadow: hovered ? 'var(--shadow-card-hover)' : 'var(--shadow-card)', background: '#fff' }}
+    >
+      <div style={{ position: 'relative', aspectRatio: '4/5', background: 'linear-gradient(145deg, var(--grey-6) 0%, var(--grey-7) 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div style={{ width: 64, height: 64, borderRadius: '50%', background: 'var(--blue-100)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--blue-600)', fontSize: 24, fontWeight: 700 }}>
+          {name[0]}
+        </div>
+        {tag && (
+          <div style={{ position: 'absolute', top: 10, left: 10 }}>
+            <Tag size="sm">{tag}</Tag>
+          </div>
+        )}
+      </div>
+      <div style={{ padding: '12px 0', display: 'flex', flexDirection: 'column', gap: 8 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 4, padding: '0 4px' }}>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="var(--grey-1)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+          <span style={{ fontSize: 14, fontWeight: 500 }}>{rating}</span>
+          <span style={{ fontSize: 14, color: 'var(--grey-3)' }}>({reviews})</span>
+        </div>
+        <div style={{ padding: '0 4px', display: 'flex', flexDirection: 'column', gap: 4 }}>
+          <span style={{ fontSize: 18, fontWeight: 500, lineHeight: '20px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{specialty} · {name}</span>
+          <span style={{ fontSize: 14, lineHeight: '20px', color: 'var(--grey-3)', display: '-webkit-box', WebkitBoxOrient: 'vertical', WebkitLineClamp: 2, overflow: 'hidden' }}>{bio}</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ─── Trust Builder ─── */
+function TrustSection() {
+  const items = [
+    { icon: '✓', title: 'Certified Experts', desc: 'All tutors are vetted, verified, and background-checked for your safety.' },
+    { icon: '◎', title: 'Payment Protection', desc: 'Pay only for lessons delivered. Full refund if not satisfied.' },
+    { icon: '⟡', title: 'No Subscription', desc: 'Pay per lesson. No commitments, contracts, or hidden fees.' },
+  ];
+  return (
+    <section style={{ padding: '40px 0' }}>
+      <div style={{ background: 'var(--grey-7)', padding: '40px 80px 80px', display: 'flex', flexDirection: 'column', gap: 32 }}>
+        <h2 style={{ fontSize: 'var(--heading-sm-size)', lineHeight: 'var(--heading-sm-line)', fontWeight: 'var(--heading-sm-weight)' }}>Why choose Wiingy</h2>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }}>
+          {items.map((item, i) => (
+            <div key={i} style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+              <div style={{ width: 48, height: 48, borderRadius: 'var(--radius-lg)', background: 'var(--blue-100)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24, color: 'var(--blue-600)' }}>
+                {item.icon}
+              </div>
+              <span style={{ fontSize: 18, fontWeight: 600, lineHeight: '20px' }}>{item.title}</span>
+              <span style={{ fontSize: 14, lineHeight: '20px', color: 'var(--grey-3)' }}>{item.desc}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─── FAQ ─── */
+function FAQSection() {
+  const faqs = [
+    { q: 'How do I book a math tutor on Wiingy?', a: 'Simply search for your subject, browse tutor profiles, and book a free trial lesson. You can message tutors directly to discuss your learning goals.' },
+    { q: 'What qualifications do Wiingy tutors have?', a: 'All tutors go through a rigorous vetting process. Most have advanced degrees and years of teaching experience in their subject area.' },
+    { q: 'How much does math tutoring cost?', a: 'Pricing varies by tutor and subject. You can view each tutor\'s hourly rate on their profile. There are no subscription fees or hidden charges.' },
+    { q: 'Can I get a refund if I\'m not satisfied?', a: 'Yes. If you\'re not satisfied with a lesson, contact our support team and we\'ll arrange a full refund or credit.' },
+  ];
+  const [openIdx, setOpenIdx] = React.useState(0);
+  return (
+    <section style={{ padding: '40px 80px 80px' }}>
+      <h2 style={{ fontSize: 'var(--heading-sm-size)', lineHeight: 'var(--heading-sm-line)', fontWeight: 'var(--heading-sm-weight)', marginBottom: 24 }}>Frequently Asked Questions</h2>
+      <div style={{ display: 'flex', flexDirection: 'column' }}>
+        {faqs.map((faq, i) => (
+          <div key={i} style={{ borderBottom: '1px solid var(--grey-6)' }}>
+            <div
+              onClick={() => setOpenIdx(openIdx === i ? -1 : i)}
+              style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '20px 0', cursor: 'pointer' }}
+            >
+              <span style={{ fontSize: 18, fontWeight: 500 }}>{faq.q}</span>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--grey-1)" strokeWidth="2" style={{ transform: openIdx === i ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 200ms', flexShrink: 0, marginLeft: 16 }}>
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </div>
+            {openIdx === i && (
+              <div style={{ paddingBottom: 20, fontSize: 16, lineHeight: '24px', color: 'var(--grey-3)', maxWidth: 720 }}>
+                {faq.a}
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+/* ─── Footer ─── */
+function Footer() {
+  return (
+    <footer style={{ background: 'var(--grey-1)', color: '#fff', padding: '48px 80px 32px' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 48, marginBottom: 48 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+          <img src="../../assets/logo-white.svg" alt="Wiingy" style={{ height: 20, width: 'fit-content' }} />
+          <span style={{ fontSize: 14, lineHeight: '20px', color: 'var(--grey-4)' }}>Find and book unique tutors for personalized learning experiences.</span>
+        </div>
+        <FooterCol title="Subjects" links={['Math Tutors', 'Science Tutors', 'Coding Tutors', 'Language Tutors', 'Music Tutors']} />
+        <FooterCol title="Company" links={['About Us', 'Careers', 'Blog', 'Help Center', 'Contact']} />
+        <FooterCol title="Legal" links={['Terms of Service', 'Privacy Policy', 'Cookie Policy']} />
+      </div>
+      <div style={{ borderTop: '1px solid var(--grey-2)', paddingTop: 24, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <span style={{ fontSize: 14, color: 'var(--grey-4)' }}>© 2025 Wiingy Inc. All rights reserved.</span>
+        <div style={{ display: 'flex', gap: 16 }}>
+          <span style={{ fontSize: 14, color: 'var(--grey-4)' }}>Terms</span>
+          <span style={{ fontSize: 14, color: 'var(--grey-4)' }}>Privacy</span>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+function FooterCol({ title, links }) {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+      <span style={{ fontSize: 16, fontWeight: 600 }}>{title}</span>
+      {links.map((link, i) => (
+        <a key={i} href="#" style={{ fontSize: 14, color: 'var(--grey-4)', lineHeight: '20px' }}>{link}</a>
+      ))}
+    </div>
+  );
+}
+
+/* ─── App ─── */
+function App() {
+  return (
+    <div>
+      <TopNav />
+      <Hero />
+      <StatsSection />
+      <TutorCardsSection />
+      <TrustSection />
+      <FAQSection />
+      <Footer />
+    </div>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);
+</script>
+</body>
+</html>

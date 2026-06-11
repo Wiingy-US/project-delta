@@ -1,0 +1,80 @@
+/* ============================================================
+   Wiingy Design System — Color Tokens
+   ============================================================ */
+
+:root {
+  /* ── Grey Scale ── */
+  --grey-1:   #222222;
+  --grey-2:   #464646;
+  --grey-3:   #6A6A6A;
+  --grey-3-2: #717171;
+  --grey-3-5: #8C8C8C;
+  --grey-4:   #B0B0B0;
+  --grey-5:   #DDDDDD;
+  --grey-6:   #EBEBEB;
+  --grey-7:   #F7F7F7;
+  --grey-8:   #FAFAFA;
+
+  /* ── Blue Scale ── */
+  --blue-100:  #E9EEF6;
+  --blue-200:  #D4DDED;
+  --blue-300:  #A8BBDA;
+  --blue-400:  #7D99C8;
+  --blue-500:  #5177B5;
+  --blue-600:  #2655A3; /* Brand Blue */
+  --blue-700:  #1E4482;
+  --blue-800:  #173362;
+  --blue-900:  #0F2241;
+  --blue-1000: #081121;
+
+  /* ── Purple Scale ── */
+  --purple-50:  #FAF5FF;
+  --purple-100: #F3E8FF;
+  --purple-200: #E9D5FF;
+  --purple-300: #D8B4FE;
+  --purple-400: #C084FC;
+  --purple-500: #A855F7;
+  --purple-600: #9333EA;
+  --purple-700: #7E22CE;
+  --purple-800: #6B21A8;
+  --purple-900: #581C87;
+
+  /* ── Orange Scale ── */
+  --orange-100:  #FFF7ED;
+  --orange-200:  #FFEDD5;
+  --orange-300:  #FED7AA;
+  --orange-400:  #FDBA74;
+  --orange-500:  #FB923C;
+  --orange-600:  #F97316;
+  --orange-700:  #EA580C;
+  --orange-800:  #C2410C;
+  --orange-900:  #9A3412;
+  --orange-1000: #7C2D12;
+
+  /* ── Semantic Colors ── */
+  --color-brand:        var(--blue-600);
+  --color-brand-hover:  var(--blue-700);
+  --color-brand-active: var(--blue-800);
+
+  --color-success:  #219653;
+  --color-warning:  #FBBF24;
+  --color-accent:   var(--purple-500);
+
+  /* ── Text ── */
+  --text-primary:   var(--grey-1);
+  --text-secondary: var(--grey-3);
+  --text-tertiary:  var(--grey-4);
+  --text-inverse:   #FFFFFF;
+
+  /* ── Surfaces ── */
+  --surface-white:    #FFFFFF;
+  --surface-page:     var(--grey-7);
+  --surface-card:     #FFFFFF;
+  --surface-hover:    var(--grey-7);
+  --surface-active:   var(--grey-6);
+
+  /* ── Borders ── */
+  --border-light:   var(--grey-5);
+  --border-default: var(--grey-6);
+  --border-subtle:  var(--grey-7);
+}
