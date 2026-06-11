@@ -1,0 +1,56 @@
+/* Wiingy typography tokens (font faces loaded via index.html) */
+
+:root {
+  --font-primary: 'Figtree', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --weight-black: 900;
+
+  --heading-md-size: 32px;
+  --heading-md-line: 36px;
+  --heading-md-weight: var(--weight-bold);
+
+  --heading-sm-size: 26px;
+  --heading-sm-line: 32px;
+  --heading-sm-weight: var(--weight-semibold);
+
+  --label-xl-size: 22px;
+  --label-xl-line: 24px;
+  --label-xl-weight: var(--weight-medium);
+
+  --label-lg-size: 18px;
+  --label-lg-line: 20px;
+  --label-lg-weight: var(--weight-semibold);
+
+  --label-md-size: 16px;
+  --label-md-line: 20px;
+  --label-md-weight: var(--weight-medium);
+
+  --label-sm-size: 14px;
+  --label-sm-line: 16px;
+  --label-sm-weight: var(--weight-medium);
+
+  --label-xs-size: 10px;
+  --label-xs-line: 12px;
+  --label-xs-weight: var(--weight-bold);
+
+  --body-xl-size: 18px;
+  --body-xl-line: 28px;
+  --body-xl-weight: var(--weight-regular);
+
+  --body-lg-size: 16px;
+  --body-lg-line: 24px;
+  --body-lg-weight: var(--weight-regular);
+
+  --body-lg-compact-size: 16px;
+  --body-lg-compact-line: 20px;
+  --body-lg-compact-weight: var(--weight-regular);
+
+  --body-md-size: 14px;
+  --body-md-line: 20px;
+  --body-md-weight: var(--weight-medium);
+}

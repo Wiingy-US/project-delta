@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "./design/tokens.css";
 @import "./design/components.css";
+@import "./design/trial-stepper.css";
 
 @layer base {
   html {
@@ -8,43 +9,46 @@
   }
 
   body {
-    @apply m-0 bg-background font-body text-text antialiased;
+    @apply m-0 font-sans text-text antialiased;
+    font-size: var(--body-lg-size);
+    line-height: var(--body-lg-line);
+    position: relative;
+    overflow-x: hidden;
+    background: linear-gradient(180deg, #f4f8fd 0%, #ffffff 42%, #ffffff 100%);
+  }
+
+  #root {
+    position: relative;
+    z-index: 1;
   }
 
   ::selection {
-    @apply bg-primary-light text-text;
+    background: var(--blue-200);
+    color: var(--text-primary);
+  }
+
+  em.brand-highlight {
+    font-style: normal;
+    color: var(--color-brand);
+    position: relative;
+    white-space: nowrap;
+  }
+
+  em.brand-highlight::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 2px;
+    height: 10px;
+    background: rgba(251, 191, 36, 0.45);
+    z-index: -1;
+    border-radius: 3px;
   }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
-  }
-
-  .animate-fade-up {
-    animation: fade-up 0.7s var(--ease-out) both;
-  }
-
-  .animate-fade-up-delay-1 {
-    animation: fade-up 0.7s var(--ease-out) 0.1s both;
-  }
-
-  .animate-fade-up-delay-2 {
-    animation: fade-up 0.7s var(--ease-out) 0.2s both;
-  }
-
-  .animate-fade-up-delay-3 {
-    animation: fade-up 0.7s var(--ease-out) 0.3s both;
-  }
-}
-
-@keyframes fade-up {
-  from {
-    opacity: 0;
-    transform: translateY(16px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
   }
 }
