@@ -18,14 +18,6 @@ function IconChevronRight() {
   )
 }
 
-function IconInfo() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-      <path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2m0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8" />
-    </svg>
-  )
-}
-
 type TutorAvailabilityProps = {
   days: Date[]
   selectedDay: Date | null
@@ -46,7 +38,6 @@ export function TutorAvailability({
   sessionDuration = '55 mins',
 }: TutorAvailabilityProps) {
   const dateScrollRef = useRef<HTMLDivElement>(null)
-  const timeScrollRef = useRef<HTMLDivElement>(null)
 
   const scrollRow = useCallback((ref: React.RefObject<HTMLDivElement | null>, direction: -1 | 1) => {
     const el = ref.current
@@ -96,17 +87,9 @@ export function TutorAvailability({
             <span>TIME</span>
             <span className="avail-section-meta">{sessionDuration}</span>
           </div>
-          <div className="avail-nav">
-            <button type="button" className="avail-nav-btn" aria-label="Previous times" onClick={() => scrollRow(timeScrollRef, -1)}>
-              <IconChevronLeft />
-            </button>
-            <button type="button" className="avail-nav-btn" aria-label="Next times" onClick={() => scrollRow(timeScrollRef, 1)}>
-              <IconChevronRight />
-            </button>
-          </div>
         </div>
 
-        <div className="avail-time-scroll" ref={timeScrollRef}>
+        <div className="avail-time-scroll">
           {TIME_SLOTS.map((time) => {
             const active = selectedTime === time
             return (
@@ -132,13 +115,6 @@ export function TutorAvailability({
         >
           Book Free Trial
         </button>
-
-        <div className="avail-guarantee">
-          <span>Guaranteed Trial</span>
-          <button type="button" className="avail-info-btn" aria-label="More information about guaranteed trial">
-            <IconInfo />
-          </button>
-        </div>
       </div>
     </div>
   )

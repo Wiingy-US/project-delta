@@ -1,6 +1,6 @@
-import { useCallback, useMemo, useRef, useState, type ReactNode } from 'react'
+import { Fragment, useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import { COURSES, GOALS, GRADES, LEARNER_TYPES } from './config'
-import { IconCheck, IconChild, IconGrad, IconLock, IconOther, IconSelf, IconTarget } from './icons'
+import { IconCheck, IconChild, IconGoogle, IconGrad, IconLock, IconOther, IconSelf, IconTarget } from './icons'
 import { BookingSuccess } from './BookingSuccess'
 import { TutorAvailability } from './TutorAvailability'
 import type { Audience, LeadState, ScreenId } from './types'
@@ -14,38 +14,34 @@ import {
   subj,
 } from './utils'
 
-function JourneyArrow() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="trial-journey__arrow" aria-hidden>
-      <path
-        d="M6 4l4 4-4 4"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  )
-}
-
 function TrialJourney({ activeStep }: { activeStep: 0 | 1 | 2 }) {
-  const steps = ['Tell us your goal', 'Pick a time', 'Book your free trial class'] as const
+  const steps = ['Tell us your goal', 'Your information', 'Book free trial'] as const
 
   return (
     <div className="trial-journey" aria-label="Trial booking steps">
-      {steps.map((step, index) => (
-        <span key={step} className="contents">
-          <span className={`trial-journey__step${activeStep === index ? ' is-active' : ''}`}>{step}</span>
-          {index < steps.length - 1 && <JourneyArrow />}
-        </span>
-      ))}
+      {steps.map((step, index) => {
+        const status = index < activeStep ? ' is-done' : index === activeStep ? ' is-active' : ''
+        return (
+          <Fragment key={step}>
+            {index > 0 && (
+              <span className={`trial-journey__line${index <= activeStep ? ' is-filled' : ''}`} aria-hidden />
+            )}
+            <div className={`trial-journey__item${status}`}>
+              <span className="trial-journey__node" aria-hidden>
+                {index < activeStep && <IconCheck size={10} />}
+              </span>
+              <span className="trial-journey__label">{step}</span>
+            </div>
+          </Fragment>
+        )
+      })}
     </div>
   )
 }
 
-function getJourneyStep(screen: ScreenId, pct: number): 0 | 1 | 2 {
-  if (screen === 'thanks') return 2
-  if (screen === 'schedule' || pct >= 88) return 1
+function getJourneyStep(screen: ScreenId): 0 | 1 | 2 {
+  if (screen === 'thanks' || screen === 'schedule') return 2
+  if (screen === 'contact') return 1
   return 0
 }
 
@@ -129,9 +125,10 @@ function ScreenFrame({
 
 export function TrialStepper() {
   const quizRef = useRef<HTMLDivElement>(null)
+  const hasInitialCenteredRef = useRef(false)
+  const shouldCenterCardRef = useRef(false)
   const [lead, setLead] = useState<LeadState>(initialLead)
   const [history, setHistory] = useState<ScreenId[]>(['audience'])
-  const [progressPct, setProgressPct] = useState(8)
   const [selectedGoalId, setSelectedGoalId] = useState<string | null>(null)
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -146,9 +143,14 @@ export function TrialStepper() {
 
   const days = useMemo(() => getUpcomingDays(8), [])
 
+  useEffect(() => {
+    if (!shouldCenterCardRef.current) return
+    shouldCenterCardRef.current = false
+    quizRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+  }, [history, screen])
+
   const navigate = useCallback((next: ScreenId, push = true) => {
     setHistory((prev) => (push ? [...prev, next] : prev.slice(0, -1).concat(next)))
-    quizRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
   }, [])
 
   const goBack = () => {
@@ -170,8 +172,11 @@ export function TrialStepper() {
       courseLabel: null,
     }))
     setSelectedGoalId(null)
+    if (!hasInitialCenteredRef.current) {
+      hasInitialCenteredRef.current = true
+      shouldCenterCardRef.current = true
+    }
     navigate(audience === 'self' ? 'learnerType' : 'grade')
-    setProgressPct(30)
   }
 
   const selectGrade = (gradeId: string, goalSetKey: string) => {
@@ -186,7 +191,6 @@ export function TrialStepper() {
     }))
     setSelectedGoalId(null)
     navigate({ type: 'goal', setKey: goalSetKey })
-    setProgressPct(48)
   }
 
   const selectLearnerType = (learnerType: string) => {
@@ -201,7 +205,6 @@ export function TrialStepper() {
     }))
     setSelectedGoalId(null)
     navigate({ type: 'goal', setKey: `self_${learnerType}` })
-    setProgressPct(48)
   }
 
   const selectGoal = (goal: (typeof GOALS)[string][number]) => {
@@ -216,7 +219,6 @@ export function TrialStepper() {
     }))
 
     if (!goal.courses) {
-      setProgressPct(70)
       navigate('contact')
     }
   }
@@ -231,7 +233,6 @@ export function TrialStepper() {
   }
 
   const continueFromGoal = () => {
-    setProgressPct(70)
     navigate('contact')
   }
 
@@ -242,7 +243,6 @@ export function TrialStepper() {
     setEmailInvalid(!okEmail)
     if (!okName || !okEmail) return
     setLead((prev) => ({ ...prev, name: name.trim(), email: email.trim() }))
-    setProgressPct(88)
     navigate('schedule')
   }
 
@@ -251,7 +251,6 @@ export function TrialStepper() {
     const payload = { ...lead, slotDate: selectedDay, slotTime: selectedTime }
     setLead(payload)
     console.log('LEAD PAYLOAD →', JSON.stringify(payload, null, 2))
-    setProgressPct(100)
     setHistory(['thanks'])
   }
 
@@ -401,7 +400,14 @@ export function TrialStepper() {
           Used only to set up your trial class. No spam, ever.
         </div>
         <button type="button" className="trial-cta" onClick={submitContact}>
-          Book A Free Trial Class
+          Continue
+        </button>
+        <div className="trial-or" aria-hidden>
+          or
+        </div>
+        <button type="button" className="trial-google-btn">
+          <IconGoogle />
+          Continue with Google
         </button>
       </ScreenFrame>
     )
@@ -453,14 +459,13 @@ export function TrialStepper() {
     )
   }
 
-  const journeyStep = getJourneyStep(screen, progressPct)
+  const journeyStep = getJourneyStep(screen)
 
   return (
     <div className="trial-shell" id="trial">
       <div className="trial-quiz" ref={quizRef}>
         {screen !== 'thanks' && (
           <div className="trial-top">
-            <TrialJourney activeStep={journeyStep} />
             {canGoBack && (
               <div className="trial-progress-row">
                 <button
@@ -476,16 +481,7 @@ export function TrialStepper() {
                 </button>
               </div>
             )}
-            <div
-              className="trial-bar"
-              role="progressbar"
-              aria-label="Progress"
-              aria-valuemin={0}
-              aria-valuemax={100}
-              aria-valuenow={progressPct}
-            >
-              <i className="trial-bar-fill" style={{ width: `${progressPct}%` }} />
-            </div>
+            <TrialJourney activeStep={journeyStep} />
           </div>
         )}
         {screen !== 'thanks' && <BriefChips lead={lead} />}

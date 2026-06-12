@@ -1,0 +1,71 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - link "Wiingy" [ref=e5] [cursor=pointer]:
+      - /url: "#"
+      - img [ref=e6]
+  - main [ref=e8]:
+    - generic [ref=e10]:
+      - generic [ref=e11]:
+        - heading "Get Best Math Tutor with 1:1 Classes" [level=1] [ref=e12]:
+          - generic [ref=e13]: Get Best Math Tutor
+          - generic [ref=e14]: with 1:1 Classes
+        - paragraph [ref=e15]: Top vetted tutors specialised in math. Math covers a range of subjects including algebra, calculus, statistics, and more for all levels.
+      - generic [ref=e17]:
+        - generic [ref=e18]:
+          - generic "Trial booking steps" [ref=e20]:
+            - generic [ref=e23]: Tell us your goal
+            - generic [ref=e26]: Your information
+            - generic [ref=e29]: Book free trial
+          - generic [ref=e30]:
+            - generic [ref=e31]:
+              - generic [ref=e32]: Book A Free Trial Class Now
+              - generic [ref=e33]: Who is the math tutoring for?
+              - generic [ref=e34]: This helps us personalize the trial class.
+            - generic [ref=e36]:
+              - button "My child" [ref=e37] [cursor=pointer]:
+                - img [ref=e39]
+                - generic [ref=e44]: My child
+              - button "Myself" [ref=e45] [cursor=pointer]:
+                - img [ref=e47]
+                - generic [ref=e50]: Myself
+              - button "Someone else" [ref=e51] [cursor=pointer]:
+                - img [ref=e53]
+                - generic [ref=e55]: Someone else
+        - paragraph [ref=e56]: © Wiingy · Your information is only used to set up your trial class.
+      - generic "Wiingy in numbers" [ref=e57]:
+        - generic [ref=e58]:
+          - generic [ref=e59]: 4,500+
+          - generic [ref=e60]: Expert tutors
+        - generic [ref=e61]:
+          - generic [ref=e62]: 50+
+          - generic [ref=e63]: Topics available
+        - generic [ref=e64]:
+          - generic [ref=e65]: 20,000+
+          - generic [ref=e66]: Happy learners
+  - contentinfo [ref=e67]:
+    - generic [ref=e68]:
+      - generic [ref=e69]:
+        - generic [ref=e70]: © 2026 Wiingy, Inc
+        - generic [ref=e71]: •
+        - link "Privacy" [ref=e72] [cursor=pointer]:
+          - /url: "#"
+        - generic [ref=e73]: •
+        - link "Terms" [ref=e74] [cursor=pointer]:
+          - /url: "#"
+        - generic [ref=e75]: •
+        - link "Sitemap" [ref=e76] [cursor=pointer]:
+          - /url: "#"
+      - generic [ref=e77]:
+        - button "English (US)" [ref=e78] [cursor=pointer]:
+          - img [ref=e79]
+          - text: English (US)
+        - generic "Wiingy on social media" [ref=e82]:
+          - link "YouTube" [ref=e83] [cursor=pointer]:
+            - /url: "#"
+            - img [ref=e84]
+          - link "Instagram" [ref=e86] [cursor=pointer]:
+            - /url: "#"
+            - img [ref=e87]
+          - link "LinkedIn" [ref=e91] [cursor=pointer]:
+            - /url: "#"
+            - img [ref=e92]
