@@ -232,6 +232,10 @@
     @apply border-[#E08CA0];
   }
 
+  .trial-otp__box:disabled {
+    @apply cursor-not-allowed opacity-60;
+  }
+
   .trial-otp__err {
     @apply mt-2 text-[12.5px] font-medium text-[#C2334D];
   }

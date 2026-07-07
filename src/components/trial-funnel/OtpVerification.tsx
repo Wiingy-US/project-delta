@@ -2,6 +2,18 @@ import { useEffect, useRef, useState, type ClipboardEvent, type KeyboardEvent } 
 
 const OTP_LENGTH = 4
 const RESEND_SECONDS = 30
+const MAX_ATTEMPTS = 5
+
+const LOCKOUT_MESSAGE = 'Too many incorrect tries. Tap Resend to get a fresh code.'
+
+/** Progressive error copy keyed on how many attempts remain after a wrong try. */
+function messageForRemaining(remaining: number): string {
+  if (remaining <= 0) return LOCKOUT_MESSAGE
+  if (remaining === 1) return 'One attempt left before you’ll need a new code.'
+  const lead =
+    remaining >= 4 ? 'That code isn’t right' : remaining === 3 ? 'Still not matching' : 'That’s not the code'
+  return `${lead} — ${remaining} attempts left.`
+}
 
 export function OtpVerification({
   phoneDisplay,
@@ -16,9 +28,12 @@ export function OtpVerification({
   onResend: () => void
 }) {
   const [digits, setDigits] = useState<string[]>(() => Array(OTP_LENGTH).fill(''))
-  const [error, setError] = useState(false)
+  const [errorMsg, setErrorMsg] = useState('')
+  const [attempts, setAttempts] = useState(0)
   const [seconds, setSeconds] = useState(RESEND_SECONDS)
   const inputsRef = useRef<Array<HTMLInputElement | null>>([])
+
+  const locked = attempts >= MAX_ATTEMPTS
 
   useEffect(() => {
     inputsRef.current[0]?.focus()
@@ -31,18 +46,21 @@ export function OtpVerification({
   }, [seconds])
 
   const submit = (code: string) => {
-    if (code.length < OTP_LENGTH) return
-    const ok = onSubmit(code)
-    if (!ok) setError(true)
+    if (locked || code.length < OTP_LENGTH) return
+    if (onSubmit(code)) return
+    const nextAttempts = attempts + 1
+    setAttempts(nextAttempts)
+    setErrorMsg(messageForRemaining(MAX_ATTEMPTS - nextAttempts))
   }
 
   const handleChange = (index: number, raw: string) => {
+    if (locked) return
     const char = raw.replace(/\D/g, '').slice(-1)
     if (!char && raw !== '') return
     const next = [...digits]
     next[index] = char
     setDigits(next)
-    setError(false)
+    setErrorMsg('')
     if (char && index < OTP_LENGTH - 1) {
       inputsRef.current[index + 1]?.focus()
     }
@@ -52,23 +70,25 @@ export function OtpVerification({
   }
 
   const handleKeyDown = (index: number, e: KeyboardEvent<HTMLInputElement>) => {
+    if (locked) return
     if (e.key === 'Backspace' && !digits[index] && index > 0) {
       const next = [...digits]
       next[index - 1] = ''
       setDigits(next)
-      setError(false)
+      setErrorMsg('')
       inputsRef.current[index - 1]?.focus()
     }
   }
 
   const handlePaste = (e: ClipboardEvent<HTMLInputElement>) => {
     e.preventDefault()
+    if (locked) return
     const text = e.clipboardData.getData('text').replace(/\D/g, '').slice(0, OTP_LENGTH)
     if (!text) return
     const next = Array(OTP_LENGTH).fill('')
     for (let i = 0; i < text.length; i++) next[i] = text[i]
     setDigits(next)
-    setError(false)
+    setErrorMsg('')
     const focusIndex = Math.min(text.length, OTP_LENGTH - 1)
     inputsRef.current[focusIndex]?.focus()
     if (text.length === OTP_LENGTH) submit(next.join(''))
@@ -78,7 +98,8 @@ export function OtpVerification({
     if (seconds > 0) return
     onResend()
     setDigits(Array(OTP_LENGTH).fill(''))
-    setError(false)
+    setErrorMsg('')
+    setAttempts(0)
     setSeconds(RESEND_SECONDS)
     inputsRef.current[0]?.focus()
   }
@@ -96,7 +117,7 @@ export function OtpVerification({
       <p className="trial-otp__hint">Enter the 4-digit code we sent you by text.</p>
 
       <div className="trial-otp__label">Enter OTP</div>
-      <div className={`trial-otp__inputs${error ? ' is-invalid' : ''}`} onPaste={handlePaste}>
+      <div className={`trial-otp__inputs${errorMsg ? ' is-invalid' : ''}`} onPaste={handlePaste}>
         {digits.map((digit, index) => (
           <input
             key={index}
@@ -110,14 +131,20 @@ export function OtpVerification({
             className="trial-otp__box"
             aria-label={`Digit ${index + 1}`}
             value={digit}
+            disabled={locked}
             onChange={(e) => handleChange(index, e.target.value)}
             onKeyDown={(e) => handleKeyDown(index, e)}
           />
         ))}
       </div>
-      {error && <p className="trial-otp__err">That code isn't right — check and try again.</p>}
+      {errorMsg && <p className="trial-otp__err">{errorMsg}</p>}
 
-      <button type="button" className="trial-cta trial-otp__verify" onClick={() => submit(digits.join(''))} disabled={!filled}>
+      <button
+        type="button"
+        className="trial-cta trial-otp__verify"
+        onClick={() => submit(digits.join(''))}
+        disabled={!filled || locked}
+      >
         Verify
       </button>
 
