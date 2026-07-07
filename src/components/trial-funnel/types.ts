@@ -26,6 +26,7 @@ export type ScreenId =
   | 'learnerType'
   | { type: 'goal'; setKey: string }
   | 'contact'
+  | 'otp'
   | 'schedule'
   | 'thanks'
 

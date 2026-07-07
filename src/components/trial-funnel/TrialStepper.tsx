@@ -2,6 +2,7 @@ import { Fragment, useCallback, useEffect, useMemo, useRef, useState, type React
 import { COUNTRIES, COURSES, DEFAULT_COUNTRY, GOALS, GRADES, LEARNER_TYPES, dialCodeFor } from './config'
 import { IconCheck, IconChild, IconGoogle, IconGrad, IconLock, IconOther, IconSelf, IconTarget } from './icons'
 import { BookingSuccess } from './BookingSuccess'
+import { OtpVerification } from './OtpVerification'
 import { TutorAvailability } from './TutorAvailability'
 import type { Audience, LeadState, ScreenId } from './types'
 import { initialLead } from './types'
@@ -41,7 +42,7 @@ function TrialJourney({ activeStep }: { activeStep: 0 | 1 | 2 }) {
 
 function getJourneyStep(screen: ScreenId): 0 | 1 | 2 {
   if (screen === 'thanks' || screen === 'schedule') return 2
-  if (screen === 'contact') return 1
+  if (screen === 'contact' || screen === 'otp') return 1
   return 0
 }
 
@@ -254,7 +255,14 @@ export function TrialStepper() {
       country,
       phone: `${dialCodeFor(country)} ${phone.trim()}`.trim(),
     }))
-    navigate('schedule')
+    navigate('otp')
+  }
+
+  const verifyOtp = (code: string) => {
+    if (code !== '1234') return false
+    // Replace 'otp' in history so returning from scheduling lands on contact.
+    navigate('schedule', false)
+    return true
   }
 
   const confirmBooking = () => {
@@ -456,6 +464,17 @@ export function TrialStepper() {
           <IconGoogle />
           Continue with Google
         </button>
+      </ScreenFrame>
+    )
+  } else if (screen === 'otp') {
+    content = (
+      <ScreenFrame eyebrow="Almost there" title="Verify your number">
+        <OtpVerification
+          phoneDisplay={`${dialCodeFor(country)} ${phone.trim()}`}
+          onSubmit={verifyOtp}
+          onChangeNumber={goBack}
+          onResend={() => console.info('Resend OTP requested')}
+        />
       </ScreenFrame>
     )
   } else if (screen === 'schedule') {
