@@ -170,6 +170,35 @@
     @apply block;
   }
 
+  .trial-phone {
+    @apply flex gap-2.5;
+  }
+
+  .trial-phone__country {
+    @apply w-[104px] shrink-0;
+  }
+
+  .trial-phone__number {
+    @apply min-w-0 flex-1;
+  }
+
+  .trial-phone label {
+    @apply mb-1.5 block text-[12px] font-semibold text-text-muted;
+  }
+
+  .trial-phone__select {
+    @apply relative;
+  }
+
+  .trial-phone__select select {
+    @apply w-full cursor-pointer appearance-none rounded-[var(--radius-lg)] border-[1.5px] border-border bg-surface-muted py-[13px] pl-3.5 pr-8 text-base text-text outline-none focus:border-brand focus:bg-surface;
+    font: inherit;
+  }
+
+  .trial-phone__select svg {
+    @apply pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 text-text-tertiary;
+  }
+
   .trial-privacy {
     @apply mt-2.5 flex items-start gap-2 text-[12.5px] leading-snug text-text-muted;
   }

@@ -1,5 +1,5 @@
 import { Fragment, useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
-import { COURSES, GOALS, GRADES, LEARNER_TYPES } from './config'
+import { COUNTRIES, COURSES, DEFAULT_COUNTRY, GOALS, GRADES, LEARNER_TYPES, dialCodeFor } from './config'
 import { IconCheck, IconChild, IconGoogle, IconGrad, IconLock, IconOther, IconSelf, IconTarget } from './icons'
 import { BookingSuccess } from './BookingSuccess'
 import { TutorAvailability } from './TutorAvailability'
@@ -132,8 +132,11 @@ export function TrialStepper() {
   const [selectedGoalId, setSelectedGoalId] = useState<string | null>(null)
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
+  const [country, setCountry] = useState<string>(DEFAULT_COUNTRY)
+  const [phone, setPhone] = useState('')
   const [nameInvalid, setNameInvalid] = useState(false)
   const [emailInvalid, setEmailInvalid] = useState(false)
+  const [phoneInvalid, setPhoneInvalid] = useState(false)
   const [selectedDay, setSelectedDay] = useState<Date | null>(null)
   const [selectedTime, setSelectedTime] = useState<string | null>(null)
   const [additionalRequirements, setAdditionalRequirements] = useState('')
@@ -239,10 +242,18 @@ export function TrialStepper() {
   const submitContact = () => {
     const okName = name.trim().length >= 2
     const okEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.trim())
+    const okPhone = phone.replace(/\D/g, '').length >= 7
     setNameInvalid(!okName)
     setEmailInvalid(!okEmail)
-    if (!okName || !okEmail) return
-    setLead((prev) => ({ ...prev, name: name.trim(), email: email.trim() }))
+    setPhoneInvalid(!okPhone)
+    if (!okName || !okEmail || !okPhone) return
+    setLead((prev) => ({
+      ...prev,
+      name: name.trim(),
+      email: email.trim(),
+      country,
+      phone: `${dialCodeFor(country)} ${phone.trim()}`.trim(),
+    }))
     navigate('schedule')
   }
 
@@ -394,6 +405,42 @@ export function TrialStepper() {
             onChange={(e) => setEmail(e.target.value)}
           />
           <div className="trial-err">That email doesn't look right — mind checking it?</div>
+        </div>
+        <div className={`trial-field${phoneInvalid ? ' invalid' : ''}`}>
+          <div className="trial-phone">
+            <div className="trial-phone__country">
+              <label htmlFor="trial-country">Country/Region</label>
+              <div className="trial-phone__select">
+                <select
+                  id="trial-country"
+                  value={country}
+                  onChange={(e) => setCountry(e.target.value)}
+                >
+                  {COUNTRIES.map((c) => (
+                    <option key={c.iso} value={c.iso}>
+                      {c.iso} ({c.dial})
+                    </option>
+                  ))}
+                </select>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                  <path d="M6 9l6 6 6-6" />
+                </svg>
+              </div>
+            </div>
+            <div className="trial-phone__number">
+              <label htmlFor="trial-phone">Phone number</label>
+              <input
+                id="trial-phone"
+                type="tel"
+                autoComplete="tel"
+                inputMode="tel"
+                placeholder={dialCodeFor(country)}
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+              />
+            </div>
+          </div>
+          <div className="trial-err">Please enter a valid phone number.</div>
         </div>
         <div className="trial-privacy">
           <IconLock />
