@@ -11,6 +11,8 @@ export type LeadState = {
   courseLabel: string | null
   name: string | null
   email: string | null
+  country: string | null
+  phone: string | null
   slotDate: Date | null
   slotTime: string | null
   additionalRequirements: string | null
@@ -24,6 +26,7 @@ export type ScreenId =
   | 'learnerType'
   | { type: 'goal'; setKey: string }
   | 'contact'
+  | 'otp'
   | 'schedule'
   | 'thanks'
 
@@ -38,6 +41,8 @@ export const initialLead = (): LeadState => ({
   courseLabel: null,
   name: null,
   email: null,
+  country: 'US',
+  phone: null,
   slotDate: null,
   slotTime: null,
   additionalRequirements: null,

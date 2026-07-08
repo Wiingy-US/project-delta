@@ -7,6 +7,25 @@ export const COURSES = [
   { id: 'stats', label: 'Statistics' },
 ] as const
 
+export const COUNTRIES = [
+  { iso: 'US', label: 'United States', dial: '+1' },
+  { iso: 'CA', label: 'Canada', dial: '+1' },
+  { iso: 'GB', label: 'United Kingdom', dial: '+44' },
+  { iso: 'AU', label: 'Australia', dial: '+61' },
+  { iso: 'IN', label: 'India', dial: '+91' },
+  { iso: 'AE', label: 'United Arab Emirates', dial: '+971' },
+  { iso: 'SG', label: 'Singapore', dial: '+65' },
+  { iso: 'IE', label: 'Ireland', dial: '+353' },
+  { iso: 'NZ', label: 'New Zealand', dial: '+64' },
+  { iso: 'ZA', label: 'South Africa', dial: '+27' },
+] as const
+
+export const DEFAULT_COUNTRY = 'US'
+
+export function dialCodeFor(iso: string | null): string {
+  return COUNTRIES.find((c) => c.iso === iso)?.dial ?? '+1'
+}
+
 export const GRADES = [
   { id: 'k5', label: 'Elementary', sub: 'Grades K–5' },
   { id: '68', label: 'Middle school', sub: 'Grades 6–8' },
